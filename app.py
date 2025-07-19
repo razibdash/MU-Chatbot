@@ -7,18 +7,21 @@ from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 from src.prompt import *
 import os
+from research_agent import execute_research_agent
 from langchain_groq import ChatGroq
 from flask_cors import CORS
-
+# os.environ["OTEL_SDK_DISABLED"] = "true"
 
 app = Flask(__name__)
 CORS(app) 
 load_dotenv()
 
-PINECONE_API_KEY=os.environ.get('PINECONE_API_KEY')
+PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY')
 GROQ_API_KEY=os.environ.get("GROQ_API_KEY")
+SERPER_API_KEY = os.environ.get("SERPER_API_KEY")
 os.environ['PINECONE_API_KEY']=PINECONE_API_KEY
 os.environ["GROQ_API_KEY"]=GROQ_API_KEY
+os.environ['SERPER_API_KEY']=SERPER_API_KEY
 
 model=ChatGroq(
         temperature = 0.7,
@@ -53,13 +56,26 @@ rag_chain = create_retrieval_chain(retriever, question_answer_chain)
 @app.route("/api/mubot", methods=["POST"])
 def chat():
     data = request.get_json()  # ✅ handles JSON input
-    msg = data.get("msg", "")
-    # print("Input:", msg)
+    msg = data.get("msg", "").lower()
+    print(msg)
+    # Define keyword triggers for external research agent
+    research_keywords = ["research", "latest", "find out", "summarize", "investigate", "report on", "current"]
+    # Check if message should trigger research agent
+    # if any(keyword in msg for keyword in research_keywords):
+    #     try:
+    #         result = execute_research_agent(msg)
+    #         print(result)
+    #         return jsonify({"answer": result})
+    #     except Exception as e:
+    #         return jsonify({"error": str(e)}), 500
+        
 
-    response = rag_chain.invoke({"input": msg})
-    print("Response:", response["answer"])
-
-    return jsonify({"answer": response["answer"]}) 
+     # Otherwise use your existing RAG setup
+    try:
+        response = rag_chain.invoke({"input": msg})
+        return jsonify({"answer": response["answer"]})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 

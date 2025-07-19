@@ -1,7 +1,7 @@
 
-from langchain.document_loaders import UnstructuredURLLoader
+from langchain_community.document_loaders import UnstructuredURLLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
 #load data from mu website
@@ -122,7 +122,103 @@ def get_mu_data():
     "https://www.metrouni.edu.bd/sites/iqac/benefits",
     "https://www.metrouni.edu.bd/sites/iqac/expected-results",
     "https://www.metrouni.edu.bd/sites/iqac/management-team",
-    "http://metrouni.edu.bd/sites/university/career"
+    "http://metrouni.edu.bd/sites/university/career",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/171",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/172",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/173",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/176",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/177",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/179",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/180",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/181",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/182",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/183",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/184",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/185",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/186",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/187",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/189",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/192",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/194",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/195",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/198",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/199",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/201",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/204",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/344",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/345",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/307",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/308",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/335",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/311",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/312",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/309",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/310",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-computer-science-engineering/383",
+
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-software-engineering/212",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-software-engineering/213",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-software-engineering/214",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-software-engineering/215",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-software-engineering/216",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-software-engineering/219",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-software-engineering/317",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-software-engineering/341",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-software-engineering/397",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-software-engineering/390",
+
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-electrical-electronic-engineering/219",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-electrical-electronic-engineering/220",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-electrical-electronic-engineering/226",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-electrical-electronic-engineering/228",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-electrical-electronic-engineering/313",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-electrical-electronic-engineering/315",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-electrical-electronic-engineering/316",
+
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/276",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/277",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/346",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/280",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/278",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/279",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/281",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/282",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/284",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/286",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/285",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/287",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/288",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/302",
+    "https://metrouni.edu.bd/sites/university/faculty-members/department-of-business-administration/303",
+
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-economics/235",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-economics/236",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-economics/239",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-economics/301",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-economics/240",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-economics/241",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-economics/242",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-economics/243",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-economics/387",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-economics/244",
+
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-law-justice/265",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-law-justice/266",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-law-justice/268",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-law-justice/269",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-law-justice/270",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-law-justice/271",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-law-justice/272",
+
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-english/247",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-english/260",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-english/250",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-english/251",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-english/253",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-english/252",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-english/255",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-english/258",
+    "https://www.metrouni.edu.bd/sites/university/faculty-members/department-of-english/261",
 
 
 
@@ -131,7 +227,6 @@ def get_mu_data():
     loader = UnstructuredURLLoader(urls=urls)
     raw_docs = loader.load()
     return raw_docs
-
 
 
 #Split the Data into Text Chunks

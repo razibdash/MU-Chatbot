@@ -40,6 +40,7 @@ const ChatPage = () => {
         body: JSON.stringify({ msg: input }),
       });
       const data = await res.json();
+      console.log(data);
       const botMsg = { sender: "bot", text: data.answer };
       setMessages((prev) => [...prev, botMsg]);
     } catch (err) {
@@ -69,10 +70,10 @@ const ChatPage = () => {
         <div className="bg-white flex gap-2 items-center text-stone-800 text-xl font-semibold p-4">
           <img src={logo} className=" h-10 rounded-full" alt="logo" />
           <div className="flex-col">
-            <p className="font-sans">MU ChatDesk</p>
+            {/* <p className="font-sans">MU ChatDesk</p>
             <p className="text-stone-400 text-sm">
               Your virtual university guide
-            </p>
+            </p> */}
           </div>
         </div>
 

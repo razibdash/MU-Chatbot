@@ -1,5 +1,7 @@
 from langchain_groq import ChatGroq
 import os
+import time
+from litellm import RateLimitError
 from dotenv import load_dotenv
 from crewai import Agent
 from crewai_tools import SerperDevTool
@@ -16,7 +18,7 @@ search_tool = SerperDevTool()
 #model 
 llm=ChatGroq(
         temperature = 0.7,
-        model="llama3-70b-8192",
+        model="llama3-8b",
         api_key= os.getenv("GROQ_API_KEY"),
 )
 
@@ -39,7 +41,7 @@ def create_research_task(agent,topic):
         expected_output = "A detailed summary of the research findings, including key points and insights related to the topic"
     )
 
-def excucute_research_agent(topic):
+def execute_research_agent(topic):
     agent = create_research_agent()
     task = create_research_task(agent, topic)
     crew = Crew(agents=[agent], tasks=[task])
