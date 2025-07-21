@@ -40,18 +40,47 @@ const ChatPage = () => {
         body: JSON.stringify({ msg: input }),
       });
       const data = await res.json();
-      console.log(data);
-      const botMsg = { sender: "bot", text: data.answer };
-      setMessages((prev) => [...prev, botMsg]);
+      setLoading(false);
+
+      // Streaming simulation
+      const fullText = data.answer;
+      let currentText = "";
+      let index = 0;
+
+      const interval = setInterval(() => {
+        if (index < fullText.length) {
+          currentText += fullText[index];
+          setMessages((prev) => {
+            const updated = [...prev];
+            // If the bot is already streaming, update last message
+            if (updated[updated.length - 1]?.sender === "bot-stream") {
+              updated[updated.length - 1].text = currentText;
+            } else {
+              updated.push({ sender: "bot-stream", text: currentText });
+            }
+            return updated;
+          });
+          index++;
+          scrollToBottom();
+        } else {
+          // Replace "bot-stream" with final "bot" message
+          setMessages((prev) => {
+            const updated = [...prev];
+            updated[updated.length - 1] = { sender: "bot", text: fullText };
+            return updated;
+          });
+          clearInterval(interval);
+          setLoading(false);
+        }
+      }, 20); // Speed of typing (ms)
     } catch (err) {
       console.error(err);
       setMessages((prev) => [
         ...prev,
         { sender: "bot", text: "Something went wrong." },
       ]);
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const handleKeyDown = (e) => {
