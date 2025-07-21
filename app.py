@@ -7,7 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 from src.prompt import *
 import os
-from research_agent import execute_research_agent
+from mu_AiAgent import execute_mu_agent
 from langchain_groq import ChatGroq
 from flask_cors import CORS
 # os.environ["OTEL_SDK_DISABLED"] = "true"
@@ -57,17 +57,16 @@ rag_chain = create_retrieval_chain(retriever, question_answer_chain)
 def chat():
     data = request.get_json()  # ✅ handles JSON input
     msg = data.get("msg", "").lower()
-    print(msg)
+    # print(msg)
     # Define keyword triggers for external research agent
     research_keywords = ["research", "latest", "find out", "summarize", "investigate", "report on", "current"]
     # Check if message should trigger research agent
-    # if any(keyword in msg for keyword in research_keywords):
-    #     try:
-    #         result = execute_research_agent(msg)
-    #         print(result)
-    #         return jsonify({"answer": result})
-    #     except Exception as e:
-    #         return jsonify({"error": str(e)}), 500
+    if any(keyword in msg for keyword in research_keywords):
+        try:
+            result = execute_mu_agent(msg)
+            return jsonify({"answer": result})
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
         
 
      # Otherwise use your existing RAG setup
