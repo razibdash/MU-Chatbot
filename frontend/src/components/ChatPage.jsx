@@ -72,7 +72,7 @@ const ChatPage = () => {
           clearInterval(interval);
           setLoading(false);
         }
-      }, 20); // Speed of typing (ms)
+      }, 10);
     } catch (err) {
       console.error(err);
       setMessages((prev) => [
